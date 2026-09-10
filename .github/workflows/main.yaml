@@ -16,3 +16,15 @@ jobs:
         shell: bash
         env:
           RANDOM_NUMBER: ${{ steps.foo.outputs.random-number }}
+
+  call_workflow_passing_data:
+    name: A job to run reusable workflow
+    permissions:
+      contents: read
+      pull-requests: write
+    uses: ./.github/workflows/reusable-workflow.yaml
+    with:
+      config-path: .github/labeler.yaml
+    secrets:
+      personal_access_token: ${{ secrets.GITHUB_TOKEN }}
+
