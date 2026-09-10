@@ -28,3 +28,16 @@ jobs:
     secrets:
       personal_access_token: ${{ secrets.GITHUB_TOKEN }}
 
+  docker_container_action:
+    runs-on: ubuntu-latest
+    name: A job that says hello and runs on docker container actions
+
+    steps:
+      - name: Hello World action step
+        id: hello
+        uses: ./
+        with: 
+          who-to-greet: Mona the Octocat
+      - name: Get the output time
+        run: echo "The time was ${{ steps.hello.outputs.time }}" 
+
